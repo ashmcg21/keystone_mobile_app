@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+import { TextField } from '@material-ui/core'
+
 class RegisterPage extends Component {
   state = {
     username: '',
+    email: '',
     password: '',
+    organization: '',
+    phone: '',
   };
 
   registerUser = (event) => {
@@ -15,7 +20,10 @@ class RegisterPage extends Component {
         type: 'REGISTER',
         payload: {
           username: this.state.username,
+          email: this.state.email,
           password: this.state.password,
+          organization: this.state.organization,
+          phone: this.state.phone
         },
       });
     } else {
@@ -43,24 +51,54 @@ class RegisterPage extends Component {
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+            <TextField
+              label="Username:"
+              fullWidth
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">
+              Email:
+              <TextField
+                label="email"
+                fullWidth
+                value={this.state.email}
+                onChange={this.handleInputChangeFor('email')}
               />
             </label>
           </div>
           <div>
             <label htmlFor="password">
               Password:
-              <input
-                type="password"
-                name="password"
+              <TextField
+                label="password"
+                fullWidth
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="organization">
+              organization:
+              <TextField
+                label="organization"
+                fullWidth
+                value={this.state.organization}
+                onChange={this.handleInputChangeFor('organization')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="phone">
+              Phone (optional):
+              <TextField
+                label="phone"
+                fullWidth
+                value={this.state.phone}
+                onChange={this.handleInputChangeFor('phone')}
               />
             </label>
           </div>
