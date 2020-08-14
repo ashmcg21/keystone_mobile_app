@@ -1,17 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const LogOutButton = props => (
-  <button
-    // This button shows up in multiple locations and is styled differently
+import { TextField, Button, MenuItem, Modal } from "@material-ui/core";
+
+
+ // This button shows up in multiple locations and is styled differently
     // because it's styled differently depending on where it is used, the className
     // is passed to it from it's parents through React props
-    className={props.className}
-    onClick={() => props.dispatch({ type: 'LOGOUT' })}
-  >
-    Log Out
-  </button>
-);
+const LogOutButton = props => {
+  const handleLogout = () => {
+    props.dispatch({ type: 'LOGOUT' })
+  }
+
+  return (
+    <>
+      {!props.asLink &&
+        <Button  className={props.className}
+        onClick={handleLogout} color="primary" variant="outlined">
+          Log Out
+        </Button>
+      }
+      {props.asLink &&
+        <Link  className={props.className}
+        onClick={handleLogout} color="primary" variant="outlined">
+          Log Out
+        </Link>
+      }
+    </>
+  )
+};
 
 // This component doesn't need 'mapStateToProps'
 // because it doesn't care what the current state is.

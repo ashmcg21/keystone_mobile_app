@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import IdeaPage from '../IdeaPage/IdeaPage';
 
 import { TextField, Button, MenuItem, Modal, Container } from "@material-ui/core";
 
@@ -9,10 +8,9 @@ import { TextField, Button, MenuItem, Modal, Container } from "@material-ui/core
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
 
-class FeedbackPage extends Component {
+class IdeaPage extends Component {
   state = {
-    comments: "",
-    question: "",
+    comment: "",
     open: false,
   };
 
@@ -21,32 +19,18 @@ class FeedbackPage extends Component {
   };
   handleClose = () => {
     this.setState({ open: false });
-  };
-
-  componentDidMount() {
-    // WE WILL GO GET THE QUESTIONS
-    // LETS DO A DISPATCH TO THE QUESTION SAGA
-    this.props.dispatch({
-      type: "GET_QUESTIONS",
-    });
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: "QUESTION_ANSWER", payload: this.state });
-    this.setState({ comments: "", question: "" });
+    this.props.dispatch({ type: "POST_IDEA", payload: this.state });
+    this.setState({ comment: ""});
     this.handleOpen();
   };
 
   onFormChange = (event) => {
     this.setState({
-      comments: event.target.value,
-    });
-  };
-
-  onQuestionsChange = (event) => {
-    this.setState({
-      question: event.target.value,
+      comment: event.target.value,
     });
   };
 
@@ -65,24 +49,15 @@ class FeedbackPage extends Component {
       // MAP THROUGH THE REDUCER THAT HAS QUESTIONS.
 <Container>
       <div>
-        <h2>Feedback</h2>
+        <h2>Ideas?</h2>
 
         <form onSubmit={this.onSubmit}>
-          {/* TODO - create Reducer and Saga to get Feedback Questions from Server Route */}
-          <TextField
-            onChange={this.onQuestionsChange}
-            value={this.state.question}
-            label="Select"
-            select
-            fullWidth
-          >
-            {menuItemArray}
-          </TextField>
+
 
           <TextField
             onChange={this.onFormChange}
             value={this.state.comments}
-            label="please give us your feedback!"
+            label="Got any ideas?!"
             fullWidth
           />
           <Button type="submit" color="primary" variant="outlined">
@@ -90,32 +65,14 @@ class FeedbackPage extends Component {
           </Button>
         </form>
         <Modal open={this.state.open} onClose={this.handleClose}>
-          <div>Thank you for your feedback!</div>
+          <div>Thanks for the idea!</div>
         </Modal>
       </div>
-
-        <IdeaPage />
       </Container>
     );
   }
 }
 
-// If you needed to add local state or other things,
-// you can make it a class component like:
-
-/*
-class InfoPage extends React.Component {
-
-  render() {
-    return (
-      <div>
-        <p>Info Page</p>
-      </div>
-    )
-  }
-}
-*/
-
 const mapStoreToProps = (store) => ({ store });
 
-export default connect(mapStoreToProps)(FeedbackPage);
+export default connect(mapStoreToProps)(IdeaPage);

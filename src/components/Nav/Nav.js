@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+
+
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
@@ -19,16 +26,17 @@ const Nav = (props) => (
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
+        <Link className="nav-link" to="/profile">
+        Profile
+      </Link>
           <Link className="nav-link" to="/feedback">
             Feedback
           </Link>
-          <LogOutButton className="nav-link"/>
+          <LogOutButton className="nav-link" asLink />
         </>
       )}
       {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
+      
     </div>
   </div>
 );

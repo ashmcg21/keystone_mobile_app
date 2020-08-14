@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { TextField, Button, MenuItem, Modal, Paper, Box, Container } from "@material-ui/core";
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -31,6 +33,7 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <Container>
       <div>
         {this.props.errors.loginMessage && (
           <h2
@@ -40,39 +43,41 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
+        <h1>Login</h1>
+        <Paper>
+          <Box p={2} mb={4}>
         <form onSubmit={this.login}>
-          <h1>Login</h1>
           <div>
             <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
+              <TextField
+                label="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
+                fullWidth
               />
             </label>
           </div>
           <div>
             <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
+
+              <TextField
+                label="password"
+                type = "password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                fullWidth
               />
             </label>
           </div>
           <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
+            <Button className="log-in" type="submit" color="primary" variant="outlined">
+              Log In
+              </Button>
           </div>
         </form>
+        </Box>
+        </Paper>
+
         <center>
           <button
             type="button"
@@ -83,6 +88,7 @@ class LoginPage extends Component {
           </button>
         </center>
       </div>
+      </Container>
     );
   }
 }
