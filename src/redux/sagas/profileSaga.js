@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* profile(action) {
+function* getProfile(action) {
   try {
     const response = yield axios.post('/api/profile', action.payload);
     console.log(response);
@@ -12,8 +12,8 @@ function* profile(action) {
   }
 }
 
-function* feedbackSaga() {
-  yield takeLatest('PROFILE', profile);
+function* profileSaga() {
+  yield takeLatest('PROFILE', getProfile);
 }
 
 export default profileSaga;

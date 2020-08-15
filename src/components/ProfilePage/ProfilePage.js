@@ -17,8 +17,7 @@ class ProfilePage extends React.Component {
     email: '',
     organization: '',
     number: '',
-
-  }
+  };
 
   componentDidMount() {
     this.props.dispatch({
@@ -29,35 +28,33 @@ class ProfilePage extends React.Component {
   onEdit = (event) => {
     event.preventDefault();
     console.log('clicked');
-  };
+  }
 
   render() {
     return (
     <Container>
+      <form onEdit={this.onEdit}>
       <div>
       <div>
         <p>
           Name:
-          <EditIcon>edit</EditIcon>
+          <button>Edit</button>
         </p>
         <p>
           Email:
-          <EditIcon>edit</EditIcon>
         </p>
         <p>
           Organization:
-          <EditIcon>edit</EditIcon>
-          </p>
+        </p>
         <p>
           Phone:
-          <EditIcon>edit</EditIcon>
         </p>
-        {/* <p>
+        <p>
         LinkedIn:
-        <EditIcon>edit</EditIcon>   //A STRETCH GOAL
-        </p> */}
+        </p>
       </div>
     </div>
+    </form>
     </Container>
     )
   }
