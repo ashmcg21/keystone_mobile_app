@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 
 
 const Nav = (props) => (
+
+
+
   <div className="nav">
     <Link to="/home">
       <h2 className="nav-title">Keystone Community </h2>
