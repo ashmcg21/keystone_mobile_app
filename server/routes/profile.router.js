@@ -7,6 +7,16 @@ const router = express.Router();
  */
 router.get('/profile', (req, res) => {
     const queryString = `SELECT * FROM "profile";`;
+
+    pool
+    .query(queryString)
+    .then((response) => {
+        res.send(response.rows);
+    })
+    .catch((err) => {
+        console.log(`Error in profile: ${err}`);
+        res.sendStatus(500);
+    });
 });
 
 /**

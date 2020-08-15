@@ -37,3 +37,7 @@ CREATE TABLE "feedback" (
 	"question_id" INT REFERENCES "feedback_questions",
 	"comments" TEXT NOT NULL
 );
+
+
+SELECT * FROM "user"
+JOIN "profile" ON "profile".user_id = "orders".id;

@@ -25,29 +25,22 @@ class ProfilePage extends React.Component {
     });
   }
 
-  onEdit = (event) => {
-    event.preventDefault();
-    console.log('clicked');
-  }
 
   render() {
     return (
     <Container>
-      <form onEdit={this.onEdit}>
+      <form >
       <div>
       <div>
+        <p > Name: </p>
         <p>
-          Name:
-          <button>Edit</button>
-        </p>
-        <p>
-          Email:
+          Email: 
         </p>
         <p>
           Organization:
         </p>
         <p>
-          Phone:
+          Phone: 
         </p>
         <p>
         LinkedIn:
