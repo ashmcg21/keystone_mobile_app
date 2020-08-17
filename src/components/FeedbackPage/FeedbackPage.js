@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import IdeaPage from '../IdeaPage/IdeaPage';
+import './Feedback.css';
 
 import { TextField, Button, MenuItem, Modal, Container } from "@material-ui/core";
 
@@ -89,7 +90,7 @@ class FeedbackPage extends Component {
             Submit
           </Button>
         </form>
-        <Modal open={this.state.open} onClose={this.handleClose}>
+        <Modal className="modal" open={this.state.open} onClose={this.handleClose}>
           <div>Thank you for your feedback!</div>
         </Modal>
       </div>
