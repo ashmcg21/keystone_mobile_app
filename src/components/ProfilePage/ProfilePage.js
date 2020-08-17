@@ -21,9 +21,9 @@ class ProfilePage extends React.Component {
   };
 
   componentDidMount() {
-    // this.props.dispatch({
-    //   type: "PROFILE",
-    // });
+    this.props.dispatch({
+      type: "PROFILE",
+    });
   }
 
   clickCancel = (event) => {
