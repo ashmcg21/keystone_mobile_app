@@ -5,7 +5,9 @@ import { Container, TextField, IconButton, Button, } from '@material-ui/core';
 import { FavoriteIcon } from '@material-ui/icons/Favorite';
 import { FavoriteBorder } from '@material-ui/icons/FavoriteBorder';
 
+// onclicks = {
 
+// }
 
 
 class HomePage extends Component {
@@ -16,12 +18,8 @@ class HomePage extends Component {
         <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
         <p>Your ID is: {this.props.user.id}</p>
         <TextField id="outlined-basic" variant="outlined">
-        </TextField >
-        {/* <div >
-          <IconButton color="primary">
-            <FavoriteIcon />
-          </IconButton>
-        </div> */}
+        </TextField > 
+        <button >like</button>
         
       </div>
       </Container>

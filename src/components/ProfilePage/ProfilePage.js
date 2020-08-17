@@ -13,10 +13,10 @@ import { Container } from '@material-ui/core';
 class ProfilePage extends React.Component {
 
   state = {
-    user: '',
-    email: '',
-    organization: '',
-    number: '',
+    user: "",
+    email: "",
+    organization: "",
+    number: "",
   };
 
   componentDidMount() {
@@ -32,18 +32,20 @@ class ProfilePage extends React.Component {
       <form >
       <div>
       <div>
-        <p>Name:</p>
         <p>
-          Email:
+          Name: {this.state.user}
         </p>
         <p>
-          Organization:
+          Email: {this.state.email}
         </p>
         <p>
-          Phone:
+          Organization: {this.state.organization}
         </p>
         <p>
-        LinkedIn:
+          Phone: {this.state.number}
+        </p>
+        <p>
+        LinkedIn: {this.state.user}
         </p>
       </div>
     </div>

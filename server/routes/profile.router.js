@@ -5,11 +5,12 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/profile', (req, res) => {
-    const queryString = `SELECT * FROM "profile";`;
+router.get('/:id', (req, res) => {
+    const queryString = `SELECT * FROM "user" WHERE "id" = $1;`;
+    const personId = req.params.id;
 
     pool
-    .query(queryString)
+    .query(queryString, [personId])
     .then((response) => {
         res.send(response.rows);
     })
@@ -22,7 +23,7 @@ router.get('/profile', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/edit/:id', (req, res) => {
 
 });
 

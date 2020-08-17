@@ -14,12 +14,6 @@ CREATE TABLE "user" (
     "phone_number" INTEGER
 );
 
-CREATE TABLE "profile" (
-	"id" SERIAL PRIMARY KEY,
-	"user_id" INT REFERENCES "user" NOT NULL,
-	"amazon_src" VARCHAR (1000) NOT NULL
-);
-
 CREATE TABLE "ideas" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" NOT NULL,
@@ -39,5 +33,4 @@ CREATE TABLE "feedback" (
 );
 
 
-SELECT * FROM "user"
-JOIN "profile" ON "profile".user_id = "orders".id;
+SELECT * FROM "user" WHERE "id" = 3;
