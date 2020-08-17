@@ -13,6 +13,7 @@ import { Container } from '@material-ui/core';
 class ProfilePage extends React.Component {
 
   state = {
+    edit: true,
     username: "",
     email: "",
     organization: "",
@@ -20,33 +21,95 @@ class ProfilePage extends React.Component {
   };
 
   componentDidMount() {
-    this.props.dispatch({
-      type: "PROFILE",
-    });
+    // this.props.dispatch({
+    //   type: "PROFILE",
+    // });
+  }
+
+  clickCancel = (event) => {
+    this.setState({
+      edit: false
+    })
+  }
+
+  clickEditMode = (event) => {
+
+    // We need to store all of the edit info
+    // if edit mode is true, go ahead and do the dispatch for PUT with the state data
+
+    if (this.state.edit === true) {
+      const userObject = {
+        id: this.props.store.user.id,
+        username: this.state.username,
+        email: this.state.email,
+        organization: this.state.organization,
+        phone_number: this.state.phone_number
+      }
+
+      console.log(userObject);
+
+      this.props.dispatch({type: "UPDATE_PROFILE", payload: userObject});
+    }
+
+
+    this.setState({
+      edit: !this.state.edit
+    })
+  }
+
+  updateUserInfo = (input) => (event) => {
+    this.setState({
+      [input] : event.target.value
+    })
   }
 
 
   render() {
     return (
     <Container>
-      <form >
+      {this.state.edit ? 
+      (
       <div>
-      <div>
-        <p>
-          Name: {this.state.user}
-        </p>
-        <p>
-          Email: {this.state.email}
-        </p>
-        <p>
-          Organization: {this.state.organization}
-        </p>
-        <p>
-          Phone: {this.state.phone_number}
-        </p>
+        <div>
+          Name:
+          <input onChange={this.updateUserInfo('username')} type="text" placeholder="Enter Name" />
+        </div>
+        <div>
+          Email:
+          <input onChange={this.updateUserInfo('email')} type="text" placeholder="Enter Email" />
+        </div>
+        <div>
+          Organization:
+          <input onChange={this.updateUserInfo('organization')} type="text" placeholder="Enter Organization" />
+        </div>
+        <div>
+          Phone:
+          <input onChange={this.updateUserInfo('phone_number')} type="text" placeholder="Enter Phone" />
+        </div>
       </div>
-    </div>
-    </form>
+      ):(
+      <form >
+        <div>
+          <div>
+            <p>
+              Name: {this.props.store.user.username}
+            </p>
+            <p>
+              Email: {this.props.store.user.email}
+            </p>
+            <p>
+              Organization: {this.props.store.user.organization.toUpperCase()}
+            </p>
+            <p>
+              Phone: {this.props.store.user.phone_number}
+            </p>
+          </div>
+        </div>
+      </form>
+    )}
+
+    {this.state.edit && <button onClick={this.clickCancel}>Cancel</button>}
+      <button onClick={this.clickEditMode}>{this.state.edit ? 'Save' : 'Edit'}</button>
     </Container>
     )
   }
