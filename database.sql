@@ -34,3 +34,8 @@ CREATE TABLE "feedback" (
 
 
 SELECT * FROM "user" WHERE "id" = 3;
+
+
+UPDATE "user" 
+SET "username" = $1, "email" = $2, "organization" = $3, "phone_number" = $4
+WHERE "id" = 4;

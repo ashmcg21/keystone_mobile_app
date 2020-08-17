@@ -13,10 +13,10 @@ import { Container } from '@material-ui/core';
 class ProfilePage extends React.Component {
 
   state = {
-    user: "",
+    username: "",
     email: "",
     organization: "",
-    number: "",
+    phone_number: "",
   };
 
   componentDidMount() {
@@ -42,10 +42,7 @@ class ProfilePage extends React.Component {
           Organization: {this.state.organization}
         </p>
         <p>
-          Phone: {this.state.number}
-        </p>
-        <p>
-        LinkedIn: {this.state.user}
+          Phone: {this.state.phone_number}
         </p>
       </div>
     </div>

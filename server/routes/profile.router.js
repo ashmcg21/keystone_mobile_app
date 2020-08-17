@@ -23,7 +23,27 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/edit/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
+    const profileId = req.params.id;
+    const newProfileInfo = req.body;
+    const queryText = `UPDATE "user"
+    SET "username" = $1, "email" = $2, "organization" = $3, "phone_number" = $4
+    WHERE "id" = $5;`;
+
+    pool.query(queryText, [
+        newProfileInfo.username,
+        newProfileInfo.email,
+        newProfileInfo.organization,
+        newProfileInfo.phone_number,
+        profileId
+    ])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.warn(err);
+            res.sendStatus(500);
+        });
 
 });
 
