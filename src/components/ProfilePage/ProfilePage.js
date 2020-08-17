@@ -32,15 +32,15 @@ class ProfilePage extends React.Component {
       <form >
       <div>
       <div>
-        <p > Name: </p>
+        <p>Name:</p>
         <p>
-          Email: 
+          Email:
         </p>
         <p>
           Organization:
         </p>
         <p>
-          Phone: 
+          Phone:
         </p>
         <p>
         LinkedIn:

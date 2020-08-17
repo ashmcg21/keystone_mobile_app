@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import { TextField } from '@material-ui/core'
+import { TextField, Container } from '@material-ui/core'
 
 class RegisterPage extends Component {
   state = {
@@ -39,6 +39,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
+    <Container>
       <div>
         {this.props.errors.registrationMessage && (
           <h2
@@ -121,6 +122,7 @@ class RegisterPage extends Component {
           </button>
         </center>
       </div>
+      </Container>
     );
   }
 }
