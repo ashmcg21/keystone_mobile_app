@@ -12,14 +12,20 @@ import {connect} from 'react-redux';
 import {
   ThemeProvider,
   createMuiTheme,
+  Drawer,
+  Menu,
+  Button,
+  MenuItem,
+  MenuList
 } from '@material-ui/core';
+
+import IconButton from '@material-ui/core/IconButton';
+import DehazeIcon from '@material-ui/icons/Dehaze';
+
 
 import {
   lightGreen,
   cyan,
-  lightBlue,
-
-
 } from '@material-ui/core/colors';
 
 import Nav from '../Nav/Nav';
@@ -42,15 +48,15 @@ const customTheme = createMuiTheme({
     secondary: {
       main: newCyan
     },
-    error: lightBlue,
-    // warning: '',
-    // info: '',
-    // success: '',
-
   }
 });
 
+
+
 class App extends Component {
+
+
+
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
   }
@@ -60,7 +66,9 @@ class App extends Component {
       <ThemeProvider theme={customTheme}>
         <Router>
           <div>
-            <Nav color="secondary" />
+           
+          
+            <Nav color="secondary"/>
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />

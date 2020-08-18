@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from "../LogOutButton/LogOutButton";
 import { Container, TextField, IconButton, Button, } from '@material-ui/core';
 
 

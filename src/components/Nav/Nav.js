@@ -1,45 +1,106 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import DehazeIcon from '@material-ui/icons/Dehaze';
+import {Dehaze,} from '@material-ui/icons';
+import {
+  Menu,
+  Drawer,
+  Button,
+  MenuItem,
+  MenuList,
+  IconButton
+} from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) => createStyles({
+  navDrawer: {
+    width: 240,
+    backgroundColor: '#efefef',
+  },
+  navItem: {
+    backgroundColor: '#333333',
+    color: '#efefef',
+  },
+  navLink: {
+    textDecoration: 'none',
+    color: '#333333',
+  }
+});
 
 
 
-const Nav = (props) => (
+class Nav extends Component {
+  state = {
+    open: false,
+  }
 
+  handleOpen = () => {
+    this.setState({ open: true });
+    console.log('click');
+  };
+  handleClose = () => {
+    this.setState({ open: false });
+    console.log('close');
+  };
 
-
-  <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Keystone Community </h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-        <Link className="nav-link" to="/profile">
-        Profile
-      </Link>
-          <Link className="nav-link" to="/feedback">
-            Feedback
+  render() {
+    const props = this.props;
+    return (
+      <React.Fragment>
+        <div className="nav">
+          <IconButton label="dehaze drawer" onClick={this.handleOpen}>
+            <Dehaze />
+          </IconButton>
+          
+          <Link to="/home">
+            <h2 className="nav-title">Keystone Community </h2>
           </Link>
-          <LogOutButton className="nav-link" asLink />
-        </>
-      )}
-      {/* Always show this link since the about page is not protected */}
-      
-    </div>
-  </div>
-);
+          
+        </div>
+
+        <Drawer
+          anchor="left"
+          open={this.state.open} onClose={this.handleClose}>
+          <div className={this.props.classes.navDrawer}>
+            <MenuList>
+
+            <MenuItem className={this.props.classes.navItem}>
+            <Link to="/home" className={this.props.classes.navLink}>
+              {/* Show this link if they are logged in or not,
+              but call this link 'Home' if they are logged in,
+              and call this link 'Login / Register' if they are not */}
+              {props.user.id ? 'Home' : 'Login / Register'}
+            </Link>
+            </MenuItem>
+            {/* Show the link to the info page and the logout button if the user is logged in */}
+            {props.user.id && (
+              <>
+                <MenuItem>
+                  <Link to="/profile" className={this.props.classes.navLink}>
+                    Profile
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/feedback" className={this.props.classes.navLink}>
+                    Feedback
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <LogOutButton asLink className={this.props.classes.navLink} />
+                </MenuItem>
+              </>
+            )}
+            {/* Always show this link since the about page is not protected */}
+            </MenuList>
+          </div>
+        </Drawer>
+      </React.Fragment>
+    )
+  }
+};
 
 // Instead of taking everything from state, we just want the user
 // object to determine if they are logged in
@@ -50,4 +111,4 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps)(withStyles(muiStyles)(Nav));
