@@ -22,8 +22,8 @@ router.get('/news', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-
+router.put('/', (req, res) => {
+//number of likes
 });
 
 module.exports = router;

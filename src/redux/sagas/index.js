@@ -6,6 +6,7 @@ import feedbackSaga from "./feedbackSaga";
 import questionSaga from "./questionSaga";
 import ideaSaga from "./ideaSaga";
 import profileSaga from './profileSaga';
+import newsSaga from "./newsSaga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     feedbackSaga(),
     questionSaga(),
     ideaSaga(),
-    profileSaga()
+    profileSaga(),
+    newsSaga(),
   ]);
 }

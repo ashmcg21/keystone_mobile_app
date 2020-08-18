@@ -5,7 +5,10 @@ function* getNews() {
   try {
     const response = yield axios.get('/api/news/');
     console.log(response);
-    
+    put({
+      type: 'SET_NEWS',
+      payload: response.data
+    });
   } catch (error) {
       console.log('Error with user:', error);
   }
@@ -22,7 +25,7 @@ function* getNews() {
 // }
 
 function* newsSaga() {
-  yield takeLatest('SET_NEWS', getNews);
+  yield takeLatest('GET_NEWS', getNews);
 //   yield takeLatest('UPDATE_PROFILE', updateProfile);
 
 }

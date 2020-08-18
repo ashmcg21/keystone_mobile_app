@@ -6,11 +6,19 @@ import { Container, TextField, IconButton, Button, } from '@material-ui/core';
 
 
 class NewsItem extends Component {
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_NEWS'
+    })
+  }
+
   render() {
     return (
     <Container>
       <div>
-          
+          {/* map through server results */}
+          {/* {this.props.store.newsReducer} */}
       </div>
       </Container>
     );
@@ -19,6 +27,9 @@ class NewsItem extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  store: {
+    newsReducer: state.newsReducer
+  }
 });
 
 
