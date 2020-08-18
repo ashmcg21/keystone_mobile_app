@@ -108,8 +108,9 @@ class ProfilePage extends React.Component {
       </form>
     )}
 
-    {this.state.edit && <button onClick={this.clickCancel}>Cancel</button>}
+    
       <button onClick={this.clickEditMode}>{this.state.edit ? 'Save' : 'Edit'}</button>
+      {this.state.edit && <button onClick={this.clickCancel}>Cancel</button>}
     </Container>
     )
   }
