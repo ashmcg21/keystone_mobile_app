@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import {Dehaze,} from '@material-ui/icons';
+import {Dehaze, Home, PersonOutline, ThumbUp, ExitToApp, } from '@material-ui/icons';
 import {
   Menu,
   Drawer,
@@ -17,16 +17,16 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 
 const muiStyles = (theme) => createStyles({
   navDrawer: {
-    width: 240,
-    backgroundColor: '#efefef',
+    width: 230,
+    backgroundColor: '#181E40',
   },
   navItem: {
-    backgroundColor: '#333333',
+    backgroundColor: '#181E40',
     color: '#efefef',
   },
   navLink: {
     textDecoration: 'none',
-    color: '#333333',
+    color: '#F2F2F2',
   }
 });
 
@@ -49,7 +49,7 @@ class Nav extends Component {
   render() {
     const props = this.props;
     return (
-      <React.Fragment>
+      <>
         <div className="nav">
           <IconButton label="dehaze drawer" onClick={this.handleOpen}>
             <Dehaze />
@@ -67,7 +67,12 @@ class Nav extends Component {
           <div className={this.props.classes.navDrawer}>
             <MenuList>
 
-            <MenuItem className={this.props.classes.navItem}>
+          
+
+          <MenuItem className={this.props.classes.navItem}>
+            <IconButton>
+              <Home />
+             </IconButton>
             <Link to="/home" className={this.props.classes.navLink}>
               {/* Show this link if they are logged in or not,
               but call this link 'Home' if they are logged in,
@@ -75,20 +80,30 @@ class Nav extends Component {
               {props.user.id ? 'Home' : 'Login / Register'}
             </Link>
             </MenuItem>
+            
             {/* Show the link to the info page and the logout button if the user is logged in */}
             {props.user.id && (
               <>
-                <MenuItem>
+                <MenuItem className={this.props.classes.navItem}>
+                <IconButton>
+                  <PersonOutline />
+                </IconButton>
                   <Link to="/profile" className={this.props.classes.navLink}>
                     Profile
                   </Link>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem className={this.props.classes.navItem}>
+                <IconButton>
+                    <ThumbUp />
+                </IconButton>
                   <Link to="/feedback" className={this.props.classes.navLink}>
                     Feedback
                   </Link>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem className={this.props.classes.navItem}>
+                <IconButton>
+                  <ExitToApp />
+                </IconButton>
                   <LogOutButton asLink className={this.props.classes.navLink} />
                 </MenuItem>
               </>
@@ -97,7 +112,7 @@ class Nav extends Component {
             </MenuList>
           </div>
         </Drawer>
-      </React.Fragment>
+      </>
     )
   }
 };
