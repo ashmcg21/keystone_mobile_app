@@ -67,8 +67,6 @@ class Nav extends Component {
           <div className={this.props.classes.navDrawer}>
             <MenuList>
 
-          
-
           <MenuItem className={this.props.classes.navItem}>
             <IconButton>
               <Home />
@@ -80,7 +78,6 @@ class Nav extends Component {
               {props.user.id ? 'Home' : 'Login / Register'}
             </Link>
             </MenuItem>
-            
             {/* Show the link to the info page and the logout button if the user is logged in */}
             {props.user.id && (
               <>
