@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import {Dehaze, Home, PersonOutline, ThumbUp, ExitToApp, } from '@material-ui/icons';
+import {Dehaze, PersonOutline, ThumbUpAltOutlined, ExitToApp, HomeOutlined, } from '@material-ui/icons';
 import {
-  Menu,
   Drawer,
-  Button,
+  Divider,
   MenuItem,
   MenuList,
   IconButton
@@ -27,6 +26,9 @@ const muiStyles = (theme) => createStyles({
   navLink: {
     textDecoration: 'none',
     color: '#F2F2F2',
+  },
+  divider: {
+    
   }
 });
 
@@ -39,11 +41,9 @@ class Nav extends Component {
 
   handleOpen = () => {
     this.setState({ open: true });
-    console.log('click');
   };
   handleClose = () => {
     this.setState({ open: false });
-    console.log('close');
   };
 
   render() {
@@ -54,7 +54,6 @@ class Nav extends Component {
           <IconButton label="dehaze drawer" onClick={this.handleOpen}>
             <Dehaze />
           </IconButton>
-          
           <Link to="/home">
             <h2 className="nav-title">Keystone Community </h2>
           </Link>
@@ -68,9 +67,10 @@ class Nav extends Component {
             <MenuList>
 
           <MenuItem className={this.props.classes.navItem}>
-            <IconButton>
-              <Home />
+            <IconButton >
+              <HomeOutlined />
              </IconButton>
+             
             <Link to="/home" className={this.props.classes.navLink}>
               {/* Show this link if they are logged in or not,
               but call this link 'Home' if they are logged in,
@@ -78,9 +78,19 @@ class Nav extends Component {
               {props.user.id ? 'Home' : 'Login / Register'}
             </Link>
             </MenuItem>
+            <Divider />
             {/* Show the link to the info page and the logout button if the user is logged in */}
             {props.user.id && (
               <>
+                <MenuItem className={this.props.classes.navItem} >
+                <IconButton>
+                    <ThumbUpAltOutlined />
+                </IconButton>
+                  <Link to="/feedback" className={this.props.classes.navLink}>
+                    Feedback
+                  </Link>
+                </MenuItem>
+                <Divider />
                 <MenuItem className={this.props.classes.navItem}>
                 <IconButton>
                   <PersonOutline />
@@ -89,20 +99,14 @@ class Nav extends Component {
                     Profile
                   </Link>
                 </MenuItem>
-                <MenuItem className={this.props.classes.navItem}>
-                <IconButton>
-                    <ThumbUp />
-                </IconButton>
-                  <Link to="/feedback" className={this.props.classes.navLink}>
-                    Feedback
-                  </Link>
-                </MenuItem>
+                <Divider />
                 <MenuItem className={this.props.classes.navItem}>
                 <IconButton>
                   <ExitToApp />
                 </IconButton>
                   <LogOutButton asLink className={this.props.classes.navLink} />
                 </MenuItem>
+                <Divider />
               </>
             )}
             {/* Always show this link since the about page is not protected */}

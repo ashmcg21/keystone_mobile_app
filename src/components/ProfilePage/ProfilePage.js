@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import EditIcon from '@material-ui/icons/Edit';
 import { Container } from '@material-ui/core';
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -13,7 +11,7 @@ import { Container } from '@material-ui/core';
 class ProfilePage extends React.Component {
 
   state = {
-    edit: true,
+    edit: false,
     username: "",
     email: "",
     organization: "",

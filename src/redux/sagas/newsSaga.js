@@ -14,9 +14,9 @@ function* getNews() {
   }
 }
 
-// function* updateProfile(action) {
+// function* updateLikes(action) {
 //   try {
-//     const response = yield axios.put(`/api/profile/edit/${action.payload.id}`, action.payload);
+//     const response = yield axios.put(`/api/profile/likes/${action.payload.id}`, action.payload);
 //     console.log(response);
 //     yield put({ type: 'FETCH_USER'});
 //   } catch (error) {
