@@ -12,7 +12,7 @@ class HomePage extends Component {
     <Container>
       <div>
       <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
-        <p>Your ID is: {this.props.user.id}</p>
+        {/* <p>Your ID is: {this.props.user.id}</p> */}
         <NewsFeed />
       </div>
       </Container>
