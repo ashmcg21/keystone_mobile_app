@@ -5,8 +5,9 @@ const router = express.Router();
 /**
  * GET route for news off DB
  */
-router.get('/news', (req, res) => {
-    const queryString = `SELECT * FROM "keystone_news" WHERE "id" = $1;`;
+
+router.get('/', (req, res) => {
+    const queryString = `SELECT * FROM "keystone_news" ORDER BY "id";`;
 
     pool
     .query(queryString)
@@ -24,16 +25,19 @@ router.get('/news', (req, res) => {
  */
 router.put('/likes/:id', (req, res) => {
 //number of likes router
-const num_likes = req.params.id;
-const likesThis = req.body;
+// const num_likes = req.params.id;
+// const likesThis = req.body;
 const queryText = `UPDATE "keystone_news"
-SET "num_of_likes" = $1;`;
+SET "num_of_likes" = "num_of_likes" +1 WHERE "id" =$1;`;
+
+// UPDATE "keystone_news" SET "num_of_likes"="num_of_likes"+1 WHERE "id"=$1;
+console.log('ID: ', req.params.id);
 
 pool.query(queryText, [
-    likesThis.num_of_likes,
-    num_likes
+    req.params.id
 ])
     .then((response) => {
+        console.log('Totally worked');
         res.sendStatus(200);
     })
     .catch((err) => {

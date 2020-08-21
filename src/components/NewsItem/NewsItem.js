@@ -14,10 +14,7 @@ import {
 import Axios from 'axios';
 
 
-// heartClick = (event) => {
-//   event.preventDefault();
-// console.log('clicked');
-// }
+
 
 //  updateLike () {
 //    axios({
@@ -33,6 +30,7 @@ import Axios from 'axios';
 
 
 
+
 class NewsItem extends Component {
 
   state = {
@@ -41,34 +39,30 @@ class NewsItem extends Component {
   };
 
   
+  onSubmit = (event) => {
+    event.preventDefault();
+    
+  };
 
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_NEWS'
-    })
+  onHeartClick = (event) => {
+    this.props.dispatch({ type: "LIKE_NEWSITEM", payload: this.props.item.id });
   }
+
 
   render() {
     return (
     <Container>
       <div>
-      <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
-        <p>Your ID is: {this.props.user.id}</p>
-        
-         <ul>
-           <li></li>
-           <li></li>
-           <li></li>
-           <li></li>
-         </ul>
-        <IconButton >
+
+         {/* Make a 'p' tag that uses this.props.item.news_input */}
+         <p>{this.props.item.news_input}</p>
+        <IconButton onClick={this.onHeartClick}>
           <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
         </IconButton>
-        {/* <button onClick={heartClick}>button</button> */}
-          {/* map through server results */}
-          <div>
-          {/* {this.props.store.newsReducer} */}
-          </div>
+        {/*  MAKE A p TAG that shows 'Likes: {this.props.item.num_of_likes} */}
+        <p>
+          Likes: {this.props.item.num_of_likes}
+        </p>
           
       </div>
       </Container>

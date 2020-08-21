@@ -5,7 +5,7 @@ function* getNews() {
   try {
     const response = yield axios.get('/api/news/');
     console.log(response);
-    put({
+    yield put({
       type: 'SET_NEWS',
       payload: response.data
     });
@@ -14,18 +14,19 @@ function* getNews() {
   }
 }
 
-// function* updateLikes(action) {
-//   try {
-//     const response = yield axios.put(`/api/profile/likes/${action.payload.id}`, action.payload);
-//     console.log(response);
-//     yield put({ type: 'FETCH_USER'});
-//   } catch (error) {
-//     console.log('Error with updating user:', error);
-//   }
-// }
+function* updateLikes(action) {
+  try {
+    const response = yield axios.put(`/api/news/likes/${action.payload}`, action.payload);
+    console.log(response);
+    yield put({ type: 'GET_NEWS'});
+  } catch (error) {
+    console.log('Error with updating user:', error);
+  }
+}
 
 function* newsSaga() {
   yield takeLatest('GET_NEWS', getNews);
+  yield takeLatest('LIKE_NEWSITEM', updateLikes);
 //   yield takeLatest('UPDATE_PROFILE', updateProfile);
 
 }
